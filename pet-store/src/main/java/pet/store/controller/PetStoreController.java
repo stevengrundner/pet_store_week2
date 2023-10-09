@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
-import pet.store.controller.model.PetStoreCustomer;
 import pet.store.controller.model.PetStoreData;
 import pet.store.controller.model.PetStoreEmployee;
 import pet.store.service.PetStoreService;
@@ -39,27 +38,10 @@ public class PetStoreController {
 
 	@PostMapping("/pet_store/{petStoreId}/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public PetStoreEmployee insertPetStoreEmployee(@PathVariable Long petStoreId,
+	public PetStoreEmployee inSertPetStoreEmployee(@PathVariable Long petStoreId,
 			@RequestBody PetStoreEmployee petStoreEmployee) {
-		log.info("Creating Pet Store Employee ID={}", petStoreId, petStoreEmployee);
+		log.info("Creating employee {} for Pet Store with ID={}", petStoreId, petStoreEmployee);
 		return petStoreService.saveEmployee(petStoreId, petStoreEmployee);
-	} // (14-6 Create Location VIDEO) controller method for insertPetPark
+	} // LINES 39-45 REVIEW
 
-	@PostMapping("/pet_store/{petStoreId}/customer")
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public PetStoreCustomer insertPetStoreCustomer(@PathVariable Long petStoreId,
-			@RequestBody PetStoreCustomer petStoreCustomer) {
-		log.info("Creating Pet Store Customer ID={}", petStoreId, petStoreCustomer);
-		return petStoreService.saveCustomer(petStoreId, petStoreCustomer);
-	} // (14-6 Create Location VIDEO) controller method for insertPetPark
-	
-//	@GetMapping("/pet_store/{petStoreId}")
-//	public PetStoreData retrievePetStoreById(@PathVariable Long PetStoreId) {
-//		log.info("Retrieving Pet Store with ID={}", PetStoreId);
-//		return parkService.retrieveContributorById(PetStoreId);
-	
-	
-//	} --> NOT SURE IF THIS IS CORRECT, NEED TO CHECK
-} // end of PetStoreController Class
-
-
+}
